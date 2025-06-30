@@ -29,6 +29,8 @@ function initShaders(gl: WebGLRenderingContext, vshader: string, fshader: string
   }
 
   gl.useProgram(program)
+  // 将程序附加到gl对象上，以便后续访问
+  ;(gl as any).program = program
   return true
 }
 
@@ -70,7 +72,7 @@ function loadShader(gl: WebGLRenderingContext, type: number, source: string): We
   // 创建着色器对象
   const shader = gl.createShader(type)
   if (shader == null) {
-    console.log('unable to create shader')
+    console.warn('unable to create shader')
     return null
   }
 
@@ -84,7 +86,7 @@ function loadShader(gl: WebGLRenderingContext, type: number, source: string): We
   const compiled = gl.getShaderParameter(shader, gl.COMPILE_STATUS)
   if (!compiled) {
     const error = gl.getShaderInfoLog(shader)
-    console.log(`Failed to compile shader: ${error}`)
+    console.warn(`Failed to compile shader: ${error}`)
     gl.deleteShader(shader)
     return null
   }

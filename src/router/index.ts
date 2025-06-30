@@ -22,6 +22,27 @@ export const routes = [
     component: () => import('@/views/ch02/ClickedPoints/index.vue'),
     meta: { description: '鼠标点击绘制点' },
   },
+  // 第三章 - 绘制一个三角形
+  {
+    path: '/ch03/TranslatedTriangle',
+    component: () => import('@/views/ch03/TranslatedTriangle/index.vue'),
+    meta: { description: '平移三角形' },
+  },
+  {
+    path: '/ch03/RotatedTriangle',
+    component: () => import('@/views/ch03/RotatedTriangle/index.vue'),
+    meta: { description: '旋转三角形' },
+  },
+  {
+    path: '/ch03/RotatedTriangle_Matrix',
+    component: () => import('@/views/ch03/RotatedTriangle_Matrix/index.vue'),
+    meta: { description: '旋转三角形（矩阵）' },
+  },
+  {
+    path: '/ch03/ScaledTriangle_Matrix',
+    component: () => import('@/views/ch03/ScaledTriangle_Matrix/index.vue'),
+    meta: { description: '缩放三角形（矩阵）' },
+  },
 ]
 
 const router = createRouter({

@@ -1,4 +1,8 @@
 // eslint.config.mjs
-import antfu from '@antfu/eslint-config'
+import eslint from '@antfu/eslint-config'
 
-export default antfu()
+export default eslint({
+  rules: {
+    'antfu/consistent-list-newline': 'off',
+  },
+})
