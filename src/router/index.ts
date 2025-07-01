@@ -56,7 +56,27 @@ export const routes = [
   {
     path: '/ch05/MultiAttributeSize',
     component: () => import('@/views/ch05/MultiAttributeSize/index.vue'),
-    meta: { description: '多缓冲区尺寸' },
+    meta: { description: '使用多缓冲区绘制多个点' },
+  },
+  {
+    path: '/ch05/MultiAttributeSize_Interleaved',
+    component: () => import('@/views/ch05/MultiAttributeSize_Interleaved/index.vue'),
+    meta: { description: '使用一个缓冲区交错存储顶点和尺寸数据' },
+  },
+  {
+    path: '/ch05/MultiAttributeColor',
+    component: () => import('@/views/ch05/MultiAttributeColor/index.vue'),
+    meta: { description: '通过varing变量在顶点着色器和片段着色器间传值' },
+  },
+  {
+    path: '/ch05/ColoredTriangle',
+    component: () => import('@/views/ch05/ColoredTriangle/index.vue'),
+    meta: { description: '使用多缓冲区绘制三角形' },
+  },
+  {
+    path: '/ch05/HelloTriangle_FragCoord',
+    component: () => import('@/views/ch05/HelloTriangle_FragCoord/index.vue'),
+    meta: { description: '绘制跟随位置变换颜色的渐变三角形' },
   },
 ]
 
