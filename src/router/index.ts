@@ -43,6 +43,21 @@ export const routes = [
     component: () => import('@/views/ch03/ScaledTriangle_Matrix/index.vue'),
     meta: { description: '缩放三角形（矩阵）' },
   },
+  {
+    path: '/ch04/RotatedTranslatedTriangle',
+    component: () => import('@/views/ch04/RotatedTranslatedTriangle/index.vue'),
+    meta: { description: '组合变换（旋转并平移）' },
+  },
+  {
+    path: '/ch04/RotatingTriangle',
+    component: () => import('@/views/ch04/RotatingTriangle/index.vue'),
+    meta: { description: '旋转三角形动画' },
+  },
+  {
+    path: '/ch05/MultiAttributeSize',
+    component: () => import('@/views/ch05/MultiAttributeSize/index.vue'),
+    meta: { description: '多缓冲区尺寸' },
+  },
 ]
 
 const router = createRouter({

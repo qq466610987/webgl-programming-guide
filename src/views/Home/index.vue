@@ -145,6 +145,7 @@ function handleImageError(event: Event) {
 }
 
 .demo-card {
+  max-width: 400px;
   background: white;
   border-radius: 12px;
   overflow: hidden;
