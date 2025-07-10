@@ -109,6 +109,16 @@ export const routes = [
     component: () => import('@/views/ch07/LookAtRotatedTriangles/index.vue'),
     meta: { description: '从指定视点观察旋转后的三角形' },
   },
+  {
+    path: '/ch07/LookAtTrianglesWithKeys',
+    component: () => import('@/views/ch07/LookAtTrianglesWithKeys/index.vue'),
+    meta: { description: '使用键盘控制视点' },
+  },
+  {
+    path: '/ch07/OrthoView',
+    component: () => import('@/views/ch07/OrthoView/index.vue'),
+    meta: { description: '正射投影' },
+  },
 ]
 
 const router = createRouter({
