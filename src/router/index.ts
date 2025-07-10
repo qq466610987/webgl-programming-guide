@@ -78,6 +78,37 @@ export const routes = [
     component: () => import('@/views/ch05/HelloTriangle_FragCoord/index.vue'),
     meta: { description: '绘制跟随位置变换颜色的渐变三角形' },
   },
+  {
+    path: '/ch05/TexturedQuad',
+    component: () => import('@/views/ch05/TexturedQuad/index.vue'),
+    meta: { description: '将一张纹理图片贴在矩形上' },
+  },
+  {
+    path: '/ch05/TexturedQuad_Repeat',
+    component: () => import('@/views/ch05/TexturedQuad_Repeat/index.vue'),
+    meta: { description: '重复纹理' },
+  },
+  {
+    path: '/ch05/TexturedQuad_Clamp_Mirror',
+    component: () => import('@/views/ch05/TexturedQuad_Clamp_Mirror/index.vue'),
+    meta: { description: '使用CLAMP_TO_EDGE和MIRRORED_REPEAT填充纹理边缘' },
+  },
+  {
+    path: '/ch05/MultiTexture',
+    component: () => import('@/views/ch05/MultiTexture/index.vue'),
+    meta: { description: '使用多纹理' },
+  },
+  // 第七章 - 进入三维世界
+  {
+    path: '/ch07/LookAtTriangles',
+    component: () => import('@/views/ch07/LookAtTriangles/index.vue'),
+    meta: { description: '三维空间中绘制具有遮挡关系的三个三角形' },
+  },
+  {
+    path: '/ch07/LookAtRotatedTriangles',
+    component: () => import('@/views/ch07/LookAtRotatedTriangles/index.vue'),
+    meta: { description: '从指定视点观察旋转后的三角形' },
+  },
 ]
 
 const router = createRouter({
