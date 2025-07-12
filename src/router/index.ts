@@ -119,6 +119,16 @@ export const routes = [
     component: () => import('@/views/ch07/OrthoView/index.vue'),
     meta: { description: '正射投影' },
   },
+  {
+    path: '/ch07/LookAtTrianglesWithKeys_ViewVolume',
+    component: () => import('@/views/ch07/LookAtTrianglesWithKeys_ViewVolume/index.vue'),
+    meta: { description: '使用键盘控制视点(并修改可视空间)' },
+  },
+  {
+    path: '/ch07/PerspectiveView',
+    component: () => import('@/views/ch07/PerspectiveView/index.vue'),
+    meta: { description: '透视投影' },
+  },
 ]
 
 const router = createRouter({
