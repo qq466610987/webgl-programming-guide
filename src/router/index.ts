@@ -122,12 +122,27 @@ export const routes = [
   {
     path: '/ch07/LookAtTrianglesWithKeys_ViewVolume',
     component: () => import('@/views/ch07/LookAtTrianglesWithKeys_ViewVolume/index.vue'),
-    meta: { description: '使用键盘控制视点(并修改可视空间)' },
+    meta: { description: '使用键盘控制视点(并修改可视空间,修复三角形的一个角被切掉的错误)' },
   },
   {
     path: '/ch07/PerspectiveView',
     component: () => import('@/views/ch07/PerspectiveView/index.vue'),
     meta: { description: '透视投影' },
+  },
+  {
+    path: '/ch07/PerspectiveView_mvp',
+    component: () => import('@/views/ch07/PerspectiveView_mvp/index.vue'),
+    meta: { description: '透视投影(MVP)' },
+  },
+  {
+    path: '/ch07/DepthBuffer',
+    component: () => import('@/views/ch07/DepthBuffer/index.vue'),
+    meta: { description: '深度缓冲' },
+  },
+  {
+    path: '/ch07/ZFighting',
+    component: () => import('@/views/ch07/ZFighting/index.vue'),
+    meta: { description: '使用多边形偏移解决深度冲突' },
   },
 ]
 
