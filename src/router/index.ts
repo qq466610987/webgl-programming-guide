@@ -144,6 +144,16 @@ export const routes = [
     component: () => import('@/views/ch07/ZFighting/index.vue'),
     meta: { description: '使用多边形偏移解决深度冲突' },
   },
+  {
+    path: '/ch07/HelloCube',
+    component: () => import('@/views/ch07/HelloCube/index.vue'),
+    meta: { description: '绘制一个立方体' },
+  },
+  {
+    path: '/ch07/ColoredCube',
+    component: () => import('@/views/ch07/ColoredCube/index.vue'),
+    meta: { description: '绘制一个立方体,并给每个面着色' },
+  },
 ]
 
 const router = createRouter({
