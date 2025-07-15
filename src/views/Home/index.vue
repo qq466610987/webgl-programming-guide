@@ -55,13 +55,34 @@ function handleImageError(event: Event) {
     parent.innerHTML += '<div class="no-image-text">暂无预览</div>'
   }
 }
+
+// 滚动到顶部
+function scrollToTop() {
+  const container = document.querySelector('.home-container')
+  if (container) {
+    container.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    })
+  }
+}
+
+// 滚动到底部
+function scrollToBottom() {
+  const container = document.querySelector('.home-container')
+  if (container) {
+    container.scrollTo({
+      top: container.scrollHeight,
+      behavior: 'smooth',
+    })
+  }
+}
 </script>
 
 <template>
   <div class="home-container">
     <div class="header">
       <h1>WebGL编程指南 - 学习Demo</h1>
-      <p>选择你想要查看的章节和案例</p>
     </div>
 
     <div class="chapters">
@@ -83,6 +104,20 @@ function handleImageError(event: Event) {
         </div>
       </div>
     </div>
+
+    <!-- 滚动按钮 -->
+    <div class="scroll-buttons">
+      <button class="scroll-btn scroll-to-top" title="回到顶部" @click="scrollToTop">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+          <path d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z" />
+        </svg>
+      </button>
+      <button class="scroll-btn scroll-to-bottom" title="前往底部" @click="scrollToBottom">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+          <path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6z" />
+        </svg>
+      </button>
+    </div>
   </div>
 </template>
 
@@ -92,6 +127,7 @@ function handleImageError(event: Event) {
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   padding: 3rem 4rem;
   overflow: auto;
+  position: relative;
 }
 
 .header {
@@ -236,6 +272,45 @@ function handleImageError(event: Event) {
   font-weight: 400;
 }
 
+/* 滚动按钮样式 */
+.scroll-buttons {
+  position: fixed;
+  right: 2rem;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  z-index: 1000;
+}
+
+.scroll-btn {
+  width: 48px;
+  height: 48px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.9);
+  color: #667eea;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+  backdrop-filter: blur(10px);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.scroll-btn:hover {
+  background: rgba(255, 255, 255, 1);
+  color: #5a67d8;
+  transform: scale(1.1);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+}
+
+.scroll-btn:active {
+  transform: scale(0.95);
+}
+
 /* 响应式设计 */
 @media (max-width: 1400px) {
   .demos-grid {
@@ -283,6 +358,15 @@ function handleImageError(event: Event) {
 
   .demo-preview {
     height: 200px;
+  }
+
+  .scroll-buttons {
+    right: 1rem;
+  }
+
+  .scroll-btn {
+    width: 44px;
+    height: 44px;
   }
 }
 </style>

@@ -154,6 +154,21 @@ export const routes = [
     component: () => import('@/views/ch07/ColoredCube/index.vue'),
     meta: { description: '绘制一个立方体,并给每个面着色' },
   },
+  {
+    path: '/ch08/LightedCube',
+    component: () => import('@/views/ch08/LightedCube/index.vue'),
+    meta: { description: '白色平行光照射下的红色立方体' },
+  },
+  {
+    path: '/ch08/LightedCube_ambient',
+    component: () => import('@/views/ch08/LightedCube_ambient/index.vue'),
+    meta: { description: '白色平行光照射下的红色立方体，并添加环境光' },
+  },
+  {
+    path: '/ch08/LightedTranslatedRotatedCube',
+    component: () => import('@/views/ch08/LightedTranslatedRotatedCube/index.vue'),
+    meta: { description: '运动物体的光照效果' },
+  },
 ]
 
 const router = createRouter({

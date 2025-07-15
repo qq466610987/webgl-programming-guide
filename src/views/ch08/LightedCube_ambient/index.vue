@@ -40,7 +40,6 @@ function main() {
   mvpMatrix.setPerspective(30, 1, 1, 100)
   mvpMatrix.lookAt(3, 3, 7, 0, 0, 0, 0, 1, 0)
   gl.uniformMatrix4fv(u_mvpMatrix, false, mvpMatrix.elements)
-  // === 新增 ===
   // 设置光线颜色、方向、法向量
   const u_LightColor = gl.getUniformLocation(gl.program, 'u_LightColor')
   const u_LightDirection = gl.getUniformLocation(gl.program, 'u_LightDirection')
@@ -50,6 +49,9 @@ function main() {
   const lightDirection = new Vector3([0.5, 3.0, 4.0])
   lightDirection.normalize()
   gl.uniform3fv(u_LightDirection, lightDirection.elements)
+  // ✅新增：设置环境光
+  const u_AmbientLight = gl.getUniformLocation(gl.program, 'u_AmbientLight')
+  gl.uniform3f(u_AmbientLight, 0.2, 0.2, 0.2)
 
   gl.clearColor(0.0, 0.0, 0.0, 1.0)
   gl.enable(gl.DEPTH_TEST)
@@ -149,8 +151,9 @@ function initArrayBuffer(
 <template>
   <div class="demo-container">
     <div class="demo-header">
-      <h2>绘制一个平行光照射下的红色立方体</h2>
-      <p>🤔可以观察到立方体右侧是全黑的，与真实世界不相符，这是因为没有考虑到漫反射</p>
+      <h2>绘制一个平行光照射下的红色立方体，并添加环境光</h2>
+      <p>👉由于有了环境光，可以观察到立方体右侧不再是全黑的</p>
+      <p>环境光可以认为是不考虑光的方向的，均匀的照射在物体表面</p>
     </div>
     <div class="canvas-container">
       <canvas id="webgl" width="400" height="400" />

@@ -30,6 +30,12 @@ function main() {
     console.error('Failed to set the positions of the vertices')
     return
   }
+  // ✅新增：设置模型矩阵，用于对立方体进行变换
+  const modelMatrix = new Matrix4()
+  // 先沿着Y轴平移1个单位
+  modelMatrix.setTranslate(0, 1, 0)
+  // 再绕X轴旋转45度
+  modelMatrix.setRotate(45, 1, 0, 0)
   // 设置mvp矩阵
   const u_mvpMatrix = gl.getUniformLocation(gl.program, 'u_mvpMatrix')
   if (!u_mvpMatrix) {
@@ -39,8 +45,9 @@ function main() {
   const mvpMatrix = new Matrix4()
   mvpMatrix.setPerspective(30, 1, 1, 100)
   mvpMatrix.lookAt(3, 3, 7, 0, 0, 0, 0, 1, 0)
+  // ✅新增：将模型矩阵与mvp矩阵相乘
+  mvpMatrix.multiply(modelMatrix)
   gl.uniformMatrix4fv(u_mvpMatrix, false, mvpMatrix.elements)
-  // === 新增 ===
   // 设置光线颜色、方向、法向量
   const u_LightColor = gl.getUniformLocation(gl.program, 'u_LightColor')
   const u_LightDirection = gl.getUniformLocation(gl.program, 'u_LightDirection')
@@ -50,6 +57,17 @@ function main() {
   const lightDirection = new Vector3([0.5, 3.0, 4.0])
   lightDirection.normalize()
   gl.uniform3fv(u_LightDirection, lightDirection.elements)
+  // 设置环境光
+  const u_AmbientLight = gl.getUniformLocation(gl.program, 'u_AmbientLight')
+  gl.uniform3f(u_AmbientLight, 0.2, 0.2, 0.2)
+
+  // ✅新增：设置用来变换法向量的矩阵
+  const u_NormalMatrix = gl.getUniformLocation(gl.program, 'u_NormalMatrix')
+  const normalMatrix = new Matrix4()
+  // 根据模型矩阵，计算变换法向量的矩阵
+  normalMatrix.setInverseOf(modelMatrix)
+  normalMatrix.transpose()
+  gl.uniformMatrix4fv(u_NormalMatrix, false, normalMatrix.elements)
 
   gl.clearColor(0.0, 0.0, 0.0, 1.0)
   gl.enable(gl.DEPTH_TEST)
@@ -149,8 +167,10 @@ function initArrayBuffer(
 <template>
   <div class="demo-container">
     <div class="demo-header">
-      <h2>绘制一个平行光照射下的红色立方体</h2>
-      <p>🤔可以观察到立方体右侧是全黑的，与真实世界不相符，这是因为没有考虑到漫反射</p>
+      <h2>运动物体的光照效果</h2>
+      <p>计算一个进行平移、旋转后的立方体，在光照下的效果</p>
+      <p>👉主要学习如何计算运动后物体的法向量</p>
+      <p><strong>规则:</strong>用法向量乘以模型矩阵的逆转置矩阵。就可以求得变换后的法向量。</p>
     </div>
     <div class="canvas-container">
       <canvas id="webgl" width="400" height="400" />
