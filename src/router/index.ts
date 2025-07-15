@@ -169,6 +169,16 @@ export const routes = [
     component: () => import('@/views/ch08/LightedTranslatedRotatedCube/index.vue'),
     meta: { description: '运动物体的光照效果' },
   },
+  {
+    path: '/ch08/PointLightedCube',
+    component: () => import('@/views/ch08/PointLightedCube/index.vue'),
+    meta: { description: '点光源照射下的立方体' },
+  },
+  {
+    path: '/ch08/PointLightedSphere',
+    component: () => import('@/views/ch08/PointLightedSphere/index.vue'),
+    meta: { description: '点光源照射下的球体' },
+  },
 ]
 
 const router = createRouter({
