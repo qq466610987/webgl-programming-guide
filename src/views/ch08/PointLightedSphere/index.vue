@@ -173,10 +173,12 @@ function initArrayBuffer(
 <template>
   <div class="demo-container">
     <div class="demo-header">
-      <h2>点光源</h2>
-      <p>核心是计算点光源到</p>
-      <p>👉主要学习如何计算运动后物体的法向量</p>
-      <p><strong>规则:</strong>用法向量乘以模型矩阵的逆转置矩阵。就可以求得变换后的法向量。</p>
+      <h2>逐顶点计算颜色</h2>
+      <p>
+        可以观察到明暗分界不自然，这是因为片元颜色是根据顶点颜色内插出来的,
+        <br>
+        为了更逼真的效果，我们应该对表面的每个点计算颜色（逐片元）
+      </p>
     </div>
     <div class="canvas-container">
       <canvas id="webgl" width="400" height="400" />

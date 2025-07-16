@@ -177,7 +177,12 @@ export const routes = [
   {
     path: '/ch08/PointLightedSphere',
     component: () => import('@/views/ch08/PointLightedSphere/index.vue'),
-    meta: { description: '点光源照射下的球体' },
+    meta: { description: '点光源照射下的球体（逐顶点计算颜色）' },
+  },
+  {
+    path: '/ch08/PointLightedSphere_perFragment',
+    component: () => import('@/views/ch08/PointLightedSphere_perFragment/index.vue'),
+    meta: { description: '点光源照射下的球体(逐片元计算颜色)' },
   },
 ]
 

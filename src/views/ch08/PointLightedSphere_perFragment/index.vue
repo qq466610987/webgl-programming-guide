@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { onMounted } from 'vue'
-import { Matrix4, Vector3 } from '@/lib/cuon-matrix'
+import { Matrix4 } from '@/lib/cuon-matrix'
 import { shaderProgramUtils } from '@/utils/shader-program-utils'
 // @ts-expect-error 忽略类型错误
 import FSHADER_SOURCE from './f-shader.glsl'
@@ -19,7 +19,7 @@ function main() {
     console.error('未找到 canvas 元素')
     return
   }
-  const gl = initWebglContext(canvas)
+  const gl = initWebglContext()
   if (!gl) {
     console.error('Failed to initialize WebGL context')
     return
@@ -169,10 +169,13 @@ function initArrayBuffer(
 <template>
   <div class="demo-container">
     <div class="demo-header">
-      <h2>点光源</h2>
-      <p>核心是计算点光源到</p>
-      <p>👉主要学习如何计算运动后物体的法向量</p>
-      <p><strong>规则:</strong>用法向量乘以模型矩阵的逆转置矩阵。就可以求得变换后的法向量。</p>
+      <h2>点光源照射下的球体(逐片元计算颜色)</h2>
+      <p>
+        逐片元的计算是通过将顶点着色器中顶点和法向量以varying变量的形式传入片元着色器，在片元着色器中计算颜色，这样片元着色器中就包含了顶点着色器中的所有计算
+        <br>
+        在片元着色器中计算颜色，这样片元着色器中的同名变量就已经是内插后的逐片元值了。
+      </p>
+      <p>跟前一个例子对比，可以观察到明暗分界更自然了</p>
     </div>
     <div class="canvas-container">
       <canvas id="webgl" width="400" height="400" />

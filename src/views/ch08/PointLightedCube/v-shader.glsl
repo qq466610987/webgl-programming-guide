@@ -15,6 +15,7 @@ void main() {
   // 使用u_NormalMatrix来变换法向量
   vec3 normal = normalize(vec3(u_NormalMatrix * a_Normal));
   // ✅ 新增：计算光线方向
+  // 🤔：注意这里是在世界坐标下计算的顶点坐标，光方向、法向量这些都在同一个坐标系下
   vec4 vertexPosition = u_ModelMatrix * a_Position;
   vec3 lightDirection = normalize(u_LightPosition - vec3(vertexPosition));
   // 计算光线方向和法向量的点积

@@ -33,7 +33,15 @@ function main() {
   // ✅新增：设置模型矩阵，用于对立方体进行变换
   const modelMatrix = new Matrix4()
   // 再绕X轴旋转90度
-  modelMatrix.setRotate(90, 1, 0, 0)
+  modelMatrix.setRotate(90, 0, 1, 0)
+
+  // 获取并传入模型矩阵到着色器
+  const u_ModelMatrix = gl.getUniformLocation(gl.program, 'u_ModelMatrix')
+  if (!u_ModelMatrix) {
+    console.error('Failed to get the storage location of u_ModelMatrix')
+    return
+  }
+  // gl.uniformMatrix4fv(u_ModelMatrix, false, modelMatrix.elements)
   // 设置mvp矩阵
   const u_mvpMatrix = gl.getUniformLocation(gl.program, 'u_mvpMatrix')
   if (!u_mvpMatrix) {
@@ -41,7 +49,9 @@ function main() {
     return
   }
   const mvpMatrix = new Matrix4()
-  mvpMatrix.setPerspective(30, 1, 1, 100)
+  // 修改：使用画布宽高比，避免变形
+  const canvas = gl.canvas as HTMLCanvasElement
+  mvpMatrix.setPerspective(30, canvas.width / canvas.height, 1, 100)
   mvpMatrix.lookAt(6, 6, 14, 0, 0, 0, 0, 1, 0)
   // 将模型矩阵与mvp矩阵相乘
   mvpMatrix.multiply(modelMatrix)
