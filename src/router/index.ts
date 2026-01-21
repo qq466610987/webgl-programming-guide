@@ -184,6 +184,11 @@ export const routes = [
     component: () => import('@/views/ch08/PointLightedSphere_perFragment/index.vue'),
     meta: { description: '点光源照射下的球体(逐片元计算颜色)' },
   },
+  {
+    path: '/ch09/JointMode',
+    component: () => import('@/views/ch09/JointMode/index.vue'),
+    meta: { description: '单关节模型' },
+  },
 ]
 
 const router = createRouter({
